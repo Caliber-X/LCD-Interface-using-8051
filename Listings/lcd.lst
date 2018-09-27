@@ -1,0 +1,100 @@
+C51 COMPILER V9.57.0.0   LCD                                                               09/07/2018 00:00:17 PAGE 1   
+
+
+C51 COMPILER V9.57.0.0, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN .\Objects\lcd.obj
+COMPILER INVOKED BY: C:\Softwares\Keil_v5\C51\BIN\C51.EXE lcd.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\lcd.lst) TABS(2) OBJECT(.\Objects\lcd.obj)
+
+line level    source
+
+*** WARNING C500 IN LINE 1 OF lcd.c: LICENSE ERROR (R207(2): REGISTRY READ ERROR)
+
+   1          #include<reg52.h>              //including sfr registers for ports of the controller
+   2          #include<lcd.h>
+   3          //LCD Module Connections
+   4          sbit RS = P0^0;                                                                   
+   5          sbit EN = P0^1;                            
+   6          sbit D0 = P2^0;
+   7          sbit D1 = P2^1;
+   8          sbit D2 = P2^2;
+   9          sbit D3 = P2^3;
+  10          sbit D4 = P2^4;
+  11          sbit D5 = P2^5;
+  12          sbit D6 = P2^6;
+  13          sbit D7 = P2^7;
+  14          //LCD Delay
+  15          void Delay(int a)
+  16          {
+  17   1          int j;
+  18   1          int i;
+  19   1          for(i=0;i<a;i++)
+  20   1          {
+  21   2              for(j=0;j<100;j++)
+  22   2              {
+  23   3              }
+  24   2          }
+  25   1      }
+  26          //Display Data
+  27          void display(unsigned char *a)
+  28          {
+  29   1          int i,j,p=0,t=1,c=0;
+  30   1          char b[20];
+  31   1          for(i=0;a[i]!='\0';i++)
+  32   1          {
+  33   2            if(a[i]!=' ')
+  34   2              b[p++]=a[i];
+  35   2            if(a[i]==' ' || a[i+1]=='\0')
+  36   2            {
+  37   3              b[p]='\0';
+  38   3              if(p<=16)
+  39   3                c=(16-p)/2;
+  40   3              else
+  41   3                c=0;
+  42   3              //Printing Normally
+  43   3              for(j=0;b[j]!='\0';j++)
+  44   3              {
+  45   4                Lcd8_Set_Cursor(t,c++);
+  46   4                Lcd8_Write_Char(b[j]);
+  47   4                Delay(300);
+  48   4              }
+  49   3              p=0;
+  50   3              if(t==1)  t=2;
+  51   3              else
+  52   3              {
+  53   4                t=1;
+C51 COMPILER V9.57.0.0   LCD                                                               09/07/2018 00:00:17 PAGE 2   
+
+  54   4                Lcd8_Clear();
+  55   4              }
+  56   3              Delay(500);
+  57   3            }
+  58   2          }
+  59   1      }
+  60          //Main fuction
+  61          void main()
+  62          {
+  63   1        Lcd8_init();
+*** WARNING C206 IN LINE 63 OF lcd.c: 'Lcd8_init': missing function-prototype
+  64   1        while(1)
+  65   1        {
+  66   2          display("Welcome to Department of Electrical Engineering"); 
+  67   2          Lcd8_Clear();
+  68   2          Delay(3000);
+  69   2        }
+  70   1      }
+*** WARNING C290 IN LINE 82 OF lcd.c: missing return value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    532    ----
+   CONSTANT SIZE    =     48    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      32
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)
