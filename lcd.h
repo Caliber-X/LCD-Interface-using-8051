@@ -14,8 +14,7 @@ extern bit D7;
 
 void Lcd_Delay(int a)
 {
-    int j;
-    int i;
+    int i,j;
     for(i=0;i<a;i++)
     {
         for(j=0;j<100;j++)
@@ -116,12 +115,15 @@ void Lcd8_Write_Char(char a)
    EN  = 0;             // => E = 04
 }
 
-/*void Lcd8_Write_String(char *a)
+//Display Data
+void display(unsigned char *a)
 {
 	int i;
 	for(i=0;a[i]!='\0';i++)
-	 Lcd8_Write_Char(a[i]);
+		Lcd8_Write_Char(a[i]);
 }
+
+/*void Lcd8_Write_String(char *a)
 void Lcd8_Shift_Right()
 {
 	Lcd8_Cmd(0x1C);

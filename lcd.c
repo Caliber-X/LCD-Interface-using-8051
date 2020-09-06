@@ -24,7 +24,7 @@ void Delay(int a)
     }
 }
 //Display Data
-void display(unsigned char *a)
+void displaydata(unsigned char *a)
 {
 	  int i,j,p=0,t=1,c=0;
 		char b[20];
@@ -63,7 +63,7 @@ void main()
 	Lcd8_init();
 	while(1)
 	{
-		display("Welcome to Department of Electrical Engineering");	
+		displaydata("Welcome to Department of Electrical Engineering");	
 		Lcd8_Clear();
 		Delay(3000);
 	}
