@@ -1,0 +1,9 @@
+# Keil generated files
+
+*.uvopt
+*.R
+*.uvgui.*
+*.DSN
+Listings
+Objects
+STARTUP.A51
